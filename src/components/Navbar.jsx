@@ -1,10 +1,9 @@
+/* eslint-disable react/prop-types */
 import styles from './navbar.module.css';
 
-import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-const Navbar = () => {
-	const [userLoggedIn, setUserLoggedIn] = useState(false);
+const Navbar = ({userLoggedIn}) => {
 	// const [userRegistered, setUserRegistered] = useState(false);
 	const navigate = useNavigate();
 
@@ -33,8 +32,6 @@ const Navbar = () => {
 							value="Login"
 							className={styles.login}
 							onClick={() => {
-								setUserLoggedIn(true);
-
 								navigate('/login');
 							}}
 						>
@@ -62,7 +59,6 @@ const Navbar = () => {
 							value="Log Out"
 							className={styles.logOut}
 							onClick={() => {
-								setUserLoggedIn(false);
 								navigate('/');
 							}}
 						>
