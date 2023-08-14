@@ -5,10 +5,9 @@ import {useNavigate} from 'react-router-dom';
 
 const Navbar = () => {
 	const [userLoggedIn, setUserLoggedIn] = useState(false);
-	const [userRegistered, setUserRegistered] = useState(false);
+	// const [userRegistered, setUserRegistered] = useState(false);
 	const navigate = useNavigate();
 
-	console.log(userLoggedIn);
 	return (
 		<nav>
 			<div className={`${styles.container} ${styles.nav}`}>
@@ -35,6 +34,8 @@ const Navbar = () => {
 							className={styles.login}
 							onClick={() => {
 								setUserLoggedIn(true);
+
+								navigate('/login');
 							}}
 						>
 							Login

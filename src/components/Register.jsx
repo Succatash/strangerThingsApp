@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 import useDidMountEffect from '../hooks/useComponentMount';
 
@@ -6,6 +7,13 @@ import styles from './register.module.css';
 import {useNavigate} from 'react-router-dom';
 const RegisterUser = () => {
 	const navigate = useNavigate();
+
+	const [registeredUser, setRegisteredUser] = useState({});
+	const [messages, setMessage] = useState('');
+	const [visible, setVisible] = useState(false);
+	const [focusPlaceholderPassword, setFocusPlaceHolder] = useState('Password');
+	const [focusPlaceholderUsername, setFocusPlaceholderUsername] =
+		useState('Username');
 
 	const handleSubmit = async (userObj) => {
 		try {
@@ -26,10 +34,13 @@ const RegisterUser = () => {
 			);
 
 			const result = await response.json();
-			// You can log ▲▲▲ the result
-			setMessage({success: result?.error?.message});
+
+			result.success
+				? setMessage(result.data?.message)
+				: setMessage(result.error?.message);
+
 			console.log(result);
-			return result;
+			// return result;
 		} catch (err) {
 			setMessage({
 				fail: "'this didn't work please make sure you fill out the form properly",
@@ -37,16 +48,6 @@ const RegisterUser = () => {
 			console.error(err);
 		}
 	};
-
-	const [registeredUser, setRegisteredUser] = useState({});
-	const [messages, setMessage] = useState({success: '', fail: ''});
-
-	const [visible, setVisible] = useState(false);
-
-	const [focusPlaceholderPassword, setFocusPlaceHolder] = useState('Password');
-
-	const [focusPlaceholderUsername, setFocusPlaceholderUsername] =
-		useState('Username');
 
 	// useEffect(() => {
 	// 	handleSubmit(registeredUser);
@@ -85,8 +86,7 @@ const RegisterUser = () => {
 					</span>{' '}
 					the your favorite items
 				</div>
-
-				<span className={styles.titleSaying}>{messages.success}</span>
+				<div className={styles.message}>{messages}</div>
 				<form
 					action=""
 					// method="post"
@@ -104,13 +104,7 @@ const RegisterUser = () => {
 							password: e.target.registeredPassword.value,
 						});
 
-						(e) => {
-							e.target.reset;
-						};
-						() => {
-							setRegisteredUser({});
-						};
-
+						e.target.reset();
 						navigate('/registerUser');
 					}}
 				>
@@ -172,13 +166,35 @@ const RegisterUser = () => {
 							</span>
 						)}
 					</div>
-
 					<input
 						type="submit"
 						value="Submit"
 						className={styles.registerButton}
 					/>
 				</form>
+				<div
+					style={{
+						background: 'rgba(0, 0, 0, 0.05)',
+						height: '5px',
+						border: 'none',
+						top: -25,
+						position: 'relative',
+					}}
+				></div>
+				<p className={styles.or}>OR</p>
+
+				<Link
+					to="/login"
+					style={{
+						color: 'black',
+						position: 'relative',
+						top: -16,
+						textAlign: 'center',
+						right: '3px',
+					}}
+				>
+					Sign in
+				</Link>
 			</div>
 		</div>
 	);

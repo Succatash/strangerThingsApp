@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import {Routes, Route} from 'react-router-dom';
 import RegisterUser from './components/Register';
+import Login from './components/Login';
 
 function App() {
 	return (
@@ -17,6 +18,13 @@ function App() {
 						console.log('test');
 					}}
 					element={<RegisterUser />}
+				></Route>
+				<Route
+					path="/login"
+					loader={() => {
+						console.log('test');
+					}}
+					element={<Login />}
 				></Route>
 			</Routes>
 		</>

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;600&family=Poppins:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;600&family=Poppins:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;600&family=Open+Sans:wght@300&family=Poppins:wght@900&display=swap');
 
 .registerUserContainer {
 	background-color: rgb(200, 200, 200);
@@ -98,6 +99,22 @@ h2 {
 	margin: 0;
 	text-align: left;
 }
+
+.message {
+	color: black;
+	font-size: 0.875rem;
+	padding-left: 44px;
+	font-weight: 600;
+	line-height: 1.2;
+	margin-top: 40px;
+	font-size: 20px;
+	text-align: left;
+	font-weight: bold;
+	background-color: rgba(100, 100, 100, 0.15);
+	margin-left: 44px;
+	margin-right: 43px;
+}
+
 .strangerThingSpan {
 	color: #fb0d0c;
 	font-family: 'Noto Serif', serif;
@@ -119,4 +136,14 @@ h2 {
 	text-align: center;
 	text-transform: uppercase;
 	padding: 12px;
+}
+
+.or {
+	color: rgba(0, 0, 0, 0.35);
+	border: none;
+	right: 293px;
+	font-size: 10px;
+	top: 470px;
+	position: absolute;
+	font-family: 'Open Sans', sans-serif;
 }
