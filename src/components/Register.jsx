@@ -1,17 +1,61 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
+
+import useDidMountEffect from '../hooks/useComponentMount';
+
 import styles from './register.module.css';
 import {useNavigate} from 'react-router-dom';
 const RegisterUser = () => {
 	const navigate = useNavigate();
 
+	const handleSubmit = async (userObj) => {
+		try {
+			const response = await fetch(
+				`${import.meta.env.VITE_BASE_URL}/users/register`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						user: {
+							username: userObj.username,
+							password: userObj.password,
+						},
+					}),
+				}
+			);
+
+			const result = await response.json();
+			// You can log ▲▲▲ the result
+			setMessage({success: result?.error?.message});
+			console.log(result);
+			return result;
+		} catch (err) {
+			setMessage({
+				fail: "'this didn't work please make sure you fill out the form properly",
+			});
+			console.error(err);
+		}
+	};
+
 	const [registeredUser, setRegisteredUser] = useState({});
+	const [messages, setMessage] = useState({success: '', fail: ''});
 
 	const [visible, setVisible] = useState(false);
+
 	const [focusPlaceholderPassword, setFocusPlaceHolder] = useState('Password');
+
 	const [focusPlaceholderUsername, setFocusPlaceholderUsername] =
 		useState('Username');
 
-	console.log(registeredUser);
+	// useEffect(() => {
+	// 	handleSubmit(registeredUser);
+	// }, [registeredUser]);
+
+	useDidMountEffect(() => {
+		handleSubmit(registeredUser);
+	}, registeredUser);
+
 	return (
 		<div className={styles.registerUserContainer}>
 			<div className={styles.modalContainer}>
@@ -41,17 +85,31 @@ const RegisterUser = () => {
 					</span>{' '}
 					the your favorite items
 				</div>
+
+				<span className={styles.titleSaying}>{messages.success}</span>
 				<form
 					action=""
 					// method="post"
 					className={styles.registerFormContainer}
 					onSubmit={(e) => {
 						e.preventDefault();
-						console.log(e.target.registeredUserName.value);
+
+						//   refactor to use Formdata instead of a useState object
+						// 	i think i create a global empty formstate and then append the stuff i need to it and get it in the post call
+						// const fd = new FormData(e.currentTarget);
+						//  setRegisteredUser([...fd]);
+
 						setRegisteredUser({
 							username: e.target.registeredUserName.value,
 							password: e.target.registeredPassword.value,
 						});
+
+						(e) => {
+							e.target.reset;
+						};
+						() => {
+							setRegisteredUser({});
+						};
 
 						navigate('/registerUser');
 					}}
@@ -72,6 +130,7 @@ const RegisterUser = () => {
 							onBlur={() => {
 								setFocusPlaceholderUsername('Username');
 							}}
+							autoComplete="username"
 						/>
 					</div>
 					<div className={styles.form_group}>
@@ -91,6 +150,7 @@ const RegisterUser = () => {
 							onBlur={() => {
 								setFocusPlaceHolder('Password');
 							}}
+							autoComplete="current-password"
 						/>
 						{visible ? (
 							<span
@@ -112,13 +172,12 @@ const RegisterUser = () => {
 							</span>
 						)}
 					</div>
-					<div className={styles.form_group}>
-						<input
-							type="submit"
-							value="Submit"
-							className={styles.registerButton}
-						/>
-					</div>
+
+					<input
+						type="submit"
+						value="Submit"
+						className={styles.registerButton}
+					/>
 				</form>
 			</div>
 		</div>
