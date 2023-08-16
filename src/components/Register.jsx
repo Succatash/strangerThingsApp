@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
-
 import useDidMountEffect from '../hooks/useComponentMount';
 
 import styles from './register.module.css';
@@ -89,7 +88,7 @@ const RegisterUser = () => {
 				<div className={styles.message}>{messages}</div>
 				<form
 					action=""
-					// method="post"
+					method="post"
 					className={styles.registerFormContainer}
 					onSubmit={(e) => {
 						e.preventDefault();
@@ -105,6 +104,7 @@ const RegisterUser = () => {
 						});
 
 						e.target.reset();
+
 						navigate('/registerUser');
 					}}
 				>
@@ -179,6 +179,8 @@ const RegisterUser = () => {
 						border: 'none',
 						top: -25,
 						position: 'relative',
+						width: 407,
+						margin: 'auto',
 					}}
 				></div>
 				<p className={styles.or}>OR</p>
@@ -188,7 +190,7 @@ const RegisterUser = () => {
 					style={{
 						color: 'black',
 						position: 'relative',
-						top: -16,
+						top: -35,
 						textAlign: 'center',
 						right: '3px',
 					}}

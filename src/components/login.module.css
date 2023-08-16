@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;600&family=Open+Sans:wght@300&family=Poppins:wght@900&display=swap');
 
 .registerUserContainer {
-	background-color: rgb(200, 200, 200);
+	background-color: white;
 	height: 100vh;
 	width: 100vw;
 	position: fixed;
@@ -17,7 +17,7 @@
 	height: 500px;
 	border-radius: 12px;
 	background-color: white;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 60px;
@@ -33,9 +33,9 @@
 }
 
 .registerInputField {
-	border-color: #121212;
+	border-color: var(--main-color);
 	border-radius: 2px;
-	color: #282828;
+	color: var(--main-color);
 	font-size: 18px;
 	height: 30px;
 	width: 70%;
@@ -74,7 +74,7 @@ input:focus {
 }
 
 h2 {
-	color: #121212;
+	color: var(--main-color);
 	font-size: 1.25rem;
 	font-family: Poppins, Open Sans, sans-serif;
 	font-weight: 900;
@@ -116,20 +116,21 @@ h2 {
 }
 
 .strangerThingSpan {
-	color: #fb0d0c;
+	color: var(--main-color);
 	font-family: 'Noto Serif', serif;
 	font-weight: bolder;
 	letter-spacing: -0.5px;
 	font-style: normal;
+	-webkit-text-stroke: 0.2px var(--secondary-color);
 }
 
 .registerButton {
-	background-color: #e7230d;
-	border: 2px solid #e7230d;
+	background-color: var(--secondary-color);
+	border: 2px solid var(--main-color);
 	border-radius: 0;
 	font-size: 18px;
 	height: 50px;
-	width: 407px;
+	width: 409px;
 	letter-spacing: -0.04em;
 	line-height: inherit;
 	position: relative;
@@ -141,9 +142,27 @@ h2 {
 .or {
 	color: rgba(0, 0, 0, 0.35);
 	border: none;
-	right: 293px;
+	left: 245px;
 	font-size: 10px;
-	top: 470px;
-	position: absolute;
+	top: -44px;
+	position: relative;
 	font-family: 'Open Sans', sans-serif;
+}
+
+.createAccountButton {
+	background-color: white;
+	color: black;
+	border: 2px solid black;
+	border-radius: 0;
+	font-size: 18px;
+	height: 50px;
+	width: 407px;
+	letter-spacing: -0.04em;
+	line-height: inherit;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 12px;
+	align-items: center;
+	right: 68px;
+	margin-left: 48px;
 }

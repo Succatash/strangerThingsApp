@@ -1,23 +1,24 @@
+/* eslint-disable react/prop-types */
 import {useState} from 'react';
-import {Link} from 'react-router-dom';
 import useDidMountEffect from '../hooks/useComponentMount';
 import styles from './login.module.css';
 import {useNavigate} from 'react-router-dom';
 
-const Login = () => {
+const Login = ({setToken, setUserLoggedIn}) => {
 	const navigate = useNavigate();
 
 	const [registeredUser, setRegisteredUser] = useState({});
-	const [messages, setMessage] = useState('');
+
 	const [visible, setVisible] = useState(false);
+
 	const [focusPlaceholderPassword, setFocusPlaceHolder] = useState('Password');
 	const [focusPlaceholderUsername, setFocusPlaceholderUsername] =
 		useState('Username');
 
-	const handleSubmit = async (userObj) => {
+	const login = async (userObj) => {
 		try {
 			const response = await fetch(
-				`${import.meta.env.VITE_BASE_URL}/users/register`,
+				`${import.meta.env.VITE_BASE_URL}/users/login`,
 				{
 					method: 'POST',
 					headers: {
@@ -33,33 +34,26 @@ const Login = () => {
 			);
 
 			const result = await response.json();
-
-			result.success
-				? setMessage(result.data?.message)
-				: setMessage(result.error?.message);
-
+			if (result.success) {
+				setUserLoggedIn(true);
+				setToken(result?.data?.token);
+				navigate('/');
+			}
 			console.log(result);
-			// return result;
+			return result;
 		} catch (err) {
-			setMessage({
-				fail: "'this didn't work please make sure you fill out the form properly",
-			});
 			console.error(err);
 		}
 	};
 
-	// useEffect(() => {
-	// 	handleSubmit(registeredUser);
-	// }, [registeredUser]);
-
 	useDidMountEffect(() => {
-		handleSubmit(registeredUser);
+		login(registeredUser);
 	}, registeredUser);
 
 	return (
 		<div className={styles.registerUserContainer}>
 			<div className={styles.modalContainer}>
-				<h2>Create Account</h2>
+				<h2>Welcome to Stranger Things</h2>
 				<div className={styles.titleSaying}>
 					Create a{' '}
 					<span className={styles.strangerThingSpan}> Stranger Things</span>{' '}
@@ -85,15 +79,17 @@ const Login = () => {
 					</span>{' '}
 					the your favorite items
 				</div>
-				<div className={styles.message}>{messages}</div>
+
+				{/* form begins here */}
+
 				<form
 					action=""
-					// method="post"
+					method="post"
 					className={styles.registerFormContainer}
 					onSubmit={(e) => {
 						e.preventDefault();
 
-						//   refactor to use Formdata instead of a useState object
+						//  TODO::  refactor to use Formdata instead of a useState object
 						// 	i think i create a global empty formstate and then append the stuff i need to it and get it in the post call
 						// const fd = new FormData(e.currentTarget);
 						//  setRegisteredUser([...fd]);
@@ -104,7 +100,6 @@ const Login = () => {
 						});
 
 						e.target.reset();
-						navigate('/registerUser');
 					}}
 				>
 					<div className={styles.form_group}>
@@ -178,22 +173,17 @@ const Login = () => {
 						border: 'none',
 						top: -25,
 						position: 'relative',
+						width: 407,
+						margin: 'auto',
 					}}
 				></div>
 				<p className={styles.or}>OR</p>
 
-				<Link
-					to="/login"
-					style={{
-						color: 'black',
-						position: 'relative',
-						top: -16,
-						textAlign: 'center',
-						right: '3px',
-					}}
-				>
-					Sign in
-				</Link>
+				<input
+					type="submit"
+					value="Create Account"
+					className={styles.createAccountButton}
+				/>
 			</div>
 		</div>
 	);

@@ -1,13 +1,9 @@
-html,
-body {
+:root {
 	margin: 0px;
 	padding: 0px;
 	height: 100%;
 	width: 100%;
 	box-sizing: border-box;
-	/* overflow-x: hidden; */
-}
-:root {
 	line-height: 1.5;
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -15,4 +11,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
 	margin: 0px;
+
+	--main-color: black;
+	--secondary-color: aquamarine;
 }

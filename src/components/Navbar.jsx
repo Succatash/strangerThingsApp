@@ -3,14 +3,19 @@ import styles from './navbar.module.css';
 
 import {useNavigate} from 'react-router-dom';
 
-const Navbar = ({userLoggedIn}) => {
+const Navbar = ({userLoggedIn, setUserLoggedIn}) => {
 	// const [userRegistered, setUserRegistered] = useState(false);
 	const navigate = useNavigate();
 
 	return (
 		<nav>
 			<div className={`${styles.container} ${styles.nav}`}>
-				<div className={styles.logo}>
+				<div
+					className={styles.logo}
+					onClick={() => {
+						navigate('/');
+					}}
+				>
 					<span>Stranger</span>
 					<span>things</span>
 				</div>
@@ -53,12 +58,13 @@ const Navbar = ({userLoggedIn}) => {
 
 				{userLoggedIn && (
 					<div className={styles.buttonContainerLogOut}>
-						<p>Welcome User</p>
+						<p>Welcome New User</p>
 						<button
 							type="button"
 							value="Log Out"
 							className={styles.logOut}
 							onClick={() => {
+								setUserLoggedIn(false);
 								navigate('/');
 							}}
 						>
