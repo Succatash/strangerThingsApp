@@ -1,7 +1,12 @@
-body .light {
+/* body .light {
 	color-scheme: light;
 }
 
 body .dark {
 	color-scheme: dark;
+} */
+
+.layout {
+	width: 100vw;
+	height: 100vh;
 }

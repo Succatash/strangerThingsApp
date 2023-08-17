@@ -1,0 +1,54 @@
+.mainContainer {
+	height: 100%searchbar;
+	width: 100vw;
+	background-color: rgba(127, 255, 212, 0.2);
+}
+
+.postContainer {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(200px, 350px));
+	grid-template-rows: repeat(3, minmax(200px, 350px));
+	overflow: scroll;
+	row-gap: 30px;
+	column-gap: 1em;
+	align-items: center;
+	justify-content: space-around;
+	/* padding: 15px; */
+	padding-bottom: 45px;
+}
+
+.titleAndCreatePost {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	height: 6em;
+}
+
+.title {
+	height: 40px;
+	width: 100vw;
+	text-align: center;
+	margin: 15px 0 0 0;
+	font-size: 26px;
+	font-weight: bolder;
+}
+
+.createPost {
+	width: 10em;
+	height: 2em;
+	border-color: var(--main-color);
+	border-radius: 2px;
+	color: var(--main-color);
+	font-size: 18px;
+	letter-spacing: -0.04em;
+	line-height: inherit;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+input:focus {
+	border: black 2px solid;
+	border-radius: 5px;
+	/* transition: all 0.25s ease-in-out; */
+}
