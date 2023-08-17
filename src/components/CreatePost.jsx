@@ -1,8 +1,16 @@
+/* eslint-disable react/prop-types */
 import styles from './createPost.module.css';
-import {useComponentMount} from '../hooks/useComponentMount';
+import useDidMountEffect from '../hooks/useComponentMount';
+import {useNavigate} from 'react-router-dom';
+import {useState} from 'react';
+// import {BsCheckLg} from 'react-icons/bs';
 
-const Createpost = ({token}) => {
-	const makePost = async () => {
+const CreatePost = ({token}) => {
+	const navigate = useNavigate();
+
+	const [post, setPost] = useState({});
+
+	const makePost = async (post) => {
 		try {
 			const response = await fetch(`${import.meta.env.VITE_BASE_URL}/posts`, {
 				method: 'POST',
@@ -11,51 +19,72 @@ const Createpost = ({token}) => {
 					Authorization: `Bearer ${token}`,
 				},
 				body: JSON.stringify({
-					post: {
-						title: 'My favorite stuffed animal',
-						description:
-							'This is a pooh doll from 1973. It has been carefully taken care of since I first got it.',
-						price: '$480.00',
-						willDeliver: true,
-					},
+					post: post,
 				}),
 			});
 			const result = await response.json();
-			console.log(result);
-			return result;
+			if (result.success) {
+				navigate('/');
+			}
 		} catch (err) {
 			console.error(err);
 		}
 	};
 
-	useComponentMount(makePost());
+	useDidMountEffect(makePost(post));
+
 	return (
-		//opaque backgroud
 		<div className={styles.createPostContainer}>
 			{/* //modal */}
 			<div className={styles.modalContainer}>
 				{/* form inside */}
-				<form action="" className={styles.form}>
-					<label htmlFor="title">Title</label>
-					<input type="text" name="title" />
 
+				<form
+					action=""
+					className={styles.form}
+					id="form"
+					onSubmit={(e) => {
+						e.preventDefault();
+						setPost({
+							title: e.target.title.value,
+							description: e.target.description.value,
+							price: e.target.price.value,
+							location: e.target.price.value,
+							willdeliver: e.target.price.checked,
+						});
+					}}
+					method="post"
+				>
+					<label htmlFor="title">Title</label>
+					<input type="text" name="title" className={styles.input} />
 					<label htmlFor="description">Description</label>
 					<textarea name="description" className={styles.textArea}></textarea>
-
 					<label htmlFor="price">Price</label>
-					<input type="text" name="price" />
+					<input type="text" name="price" className={styles.input} />
+					<label htmlFor="location">location</label>
+					<input type="text" name="location" className={styles.input} />
 
-					<label htmlFor="Location">location</label>
-					<input type="text" name="location" />
-
-					<label htmlFor="willdeliver">Will Deliver</label>
-					<input type="radio" name="willdeliver" value="true" />
-
-					<input type="submit" value="submit" />
+					{/* TODO:fix this so it shows checkmark when clicked */}
+					<label htmlFor="willdeliver" className={styles.willDeliverLabel}>
+						Will Deliver
+					</label>
+					{/* <BsCheckLg
+								className={styles.checkmark}
+								onClick={() => {
+									setChecked(false);
+								}}
+							/> */}
+					<input
+						type="radio"
+						name="willdeliver"
+						value="true"
+						className={styles.checked}
+					/>
+					<input type="submit" value="submit" className={styles.input} />
 				</form>
 			</div>
 		</div>
 	);
 };
 
-export default Createpost;
+export default CreatePost;

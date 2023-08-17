@@ -32,7 +32,7 @@ label {
 	text-align: center;
 }
 
-input {
+.input {
 	padding: 10px;
 	margin: 5px;
 	border: 2px var(--main-color) solid;
@@ -41,7 +41,7 @@ input {
 textArea {
 	padding: 10px;
 	margin: 5px;
-	width: 465px;
+	width: 446px;
 	border: 2px var(--main-color) solid;
 }
 
@@ -49,3 +49,52 @@ input[type='submit'] {
 	background-color: var(--secondary-color);
 	font-weight: 600;
 }
+
+.checked {
+	display: flex;
+	content: '';
+	appearance: none;
+	background: white;
+	background-color: white;
+	outline: 2px solid #333;
+	border: 3px solid white;
+	width: 16px;
+	height: 16px;
+	margin-bottom: 1em;
+}
+
+.checked:not(:checked) {
+	content: '';
+	appearance: none;
+	background: white;
+	background-color: white;
+	outline: 2px solid #333;
+	border: 3px solid white;
+	width: 16px;
+	height: 16px;
+	margin-bottom: 1em;
+}
+
+.checked:checked {
+	content: '✔';
+	/* background: aquamarine; */
+	appearance: none;
+	outline: 2px solid #333;
+	border: 3px solid aquamarine;
+	width: 16px;
+	height: 16px;
+	background-color: aquamarine;
+	margin-bottom: 1em;
+}
+
+.willDeliverLabel {
+	cursor: pointer;
+	text-align: left;
+	padding-top: 5px;
+}
+
+/* .checkmark {
+	position: relative;
+	top: 36px;
+	left: 9px;
+} */

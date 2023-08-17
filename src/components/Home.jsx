@@ -2,19 +2,19 @@
 import styles from './home.module.css';
 import {useEffect, useState} from 'react';
 import Post from './Post';
-// import {useNavigate} from 'react-router-dom';
-import Createpost from './createPost';
+import {useNavigate, Outlet} from 'react-router-dom';
+// import Createpost from './createPost';
 
-const Home = ({userLoggedIn, token}) => {
+const Home = ({userLoggedIn}) => {
 	const [posts, setPosts] = useState([]);
-	const [createPost, setCreatePost] = useState(false);
 
-	console.log(createPost);
+	const navigate = useNavigate();
+
 	const fetchPosts = async () => {
 		try {
 			const response = await fetch(`${import.meta.env.VITE_BASE_URL}/posts`);
 			const result = await response.json();
-			console.log(result.data);
+
 			setPosts(result.data.posts);
 		} catch (err) {
 			console.error(err);
@@ -33,7 +33,7 @@ const Home = ({userLoggedIn, token}) => {
 					<button
 						className={styles.createPost}
 						onClick={() => {
-							setCreatePost(true);
+							navigate('/makepost');
 						}}
 					>
 						Create Post
@@ -42,7 +42,7 @@ const Home = ({userLoggedIn, token}) => {
 					<button style={{display: 'none'}}>Create Post</button>
 				)}
 
-				{createPost && <Createpost />}
+				<Outlet />
 			</div>
 			<div className={styles.postContainer}>
 				{posts.map((post) => {
