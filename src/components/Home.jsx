@@ -5,7 +5,7 @@ import Post from './Post';
 // import {useNavigate} from 'react-router-dom';
 import Createpost from './createPost';
 
-const Home = ({userLoggedIn}) => {
+const Home = ({userLoggedIn, token}) => {
 	const [posts, setPosts] = useState([]);
 	const [createPost, setCreatePost] = useState(false);
 

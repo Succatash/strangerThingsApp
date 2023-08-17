@@ -22,5 +22,30 @@
 }
 
 .form {
-	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+label {
+	text-align: center;
+}
+
+input {
+	padding: 10px;
+	margin: 5px;
+	border: 2px var(--main-color) solid;
+}
+
+textArea {
+	padding: 10px;
+	margin: 5px;
+	width: 465px;
+	border: 2px var(--main-color) solid;
+}
+
+input[type='submit'] {
+	background-color: var(--secondary-color);
+	font-weight: 600;
 }
