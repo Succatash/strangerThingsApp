@@ -7,8 +7,9 @@ import Createpost from './createPost';
 
 const Home = ({userLoggedIn}) => {
 	const [posts, setPosts] = useState([]);
-	const [createPost, setCreatePost] = false;
+	const [createPost, setCreatePost] = useState(false);
 
+	console.log(createPost);
 	const fetchPosts = async () => {
 		try {
 			const response = await fetch(`${import.meta.env.VITE_BASE_URL}/posts`);
@@ -40,15 +41,14 @@ const Home = ({userLoggedIn}) => {
 				) : (
 					<button style={{display: 'none'}}>Create Post</button>
 				)}
+
+				{createPost && <Createpost />}
 			</div>
 			<div className={styles.postContainer}>
 				{posts.map((post) => {
 					return <Post key={post._id} posts={post} />;
 				})}
 			</div>
-
-			{/* //this is where i open the create post model */}
-			{createPost && <Createpost />}
 		</div>
 	);
 };

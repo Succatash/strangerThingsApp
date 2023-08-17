@@ -7,7 +7,11 @@ const Createpost = () => {
 			{/* //modal */}
 			<div className={styles.modalContainer}>
 				{/* form inside */}
-				create Posts here
+				<form action="" className={styles.form}>
+					<label htmlFor="title">Title</label>
+					<input type="text" name="title" />
+					<input type="submit" value="submit" />
+				</form>
 			</div>
 		</div>
 	);
