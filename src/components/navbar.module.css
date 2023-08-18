@@ -61,7 +61,7 @@
 .buttonContainerLogOut {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: right;
 	max-width: 300px;
 	width: 33%;
 	padding-bottom: 10px;
@@ -70,13 +70,22 @@
 
 .logOut {
 	padding: 10px 15px;
-	border: none;
 	border-radius: 0 5px 5px 0;
 	cursor: pointer;
 	font-size: 16px;
 	margin-top: 10px;
+	color: black;
+	background-color: aquamarine;
+}
+
+.profile {
+	padding: 10px 15px;
+	border-radius: 5px 0 0 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 10px;
 	color: var(--main-color);
-	background-color: var(--secondary-color);
+	background-color: silver;
 }
 .logOutLink {
 	color: white;
@@ -124,3 +133,21 @@ i {
 	color: black;
 	padding-left: 2px;
 }
+@media (max-width: 850px) {
+	.searchContainer input {
+		width: 300px;
+	}
+
+	.iconContainer {
+		width: 42px;
+	}
+	.searchContainer {
+		margin: 9px 0 0 2rem;
+		width: 350px;
+	}
+	.buttonContainer {
+		padding-right: 2px;
+	}
+}
+
+/* anything below width 675 make a hamburgere for the buttons */

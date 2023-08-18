@@ -17,6 +17,7 @@
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	display: flex;
 	flex-direction: column;
+
 	margin-bottom: 60px;
 	color: black;
 }
@@ -51,7 +52,6 @@ input[type='submit'] {
 }
 
 .checked {
-	display: flex;
 	content: '';
 	appearance: none;
 	background: white;
@@ -61,29 +61,19 @@ input[type='submit'] {
 	width: 16px;
 	height: 16px;
 	margin-bottom: 1em;
-}
-
-.checked:not(:checked) {
-	content: '';
-	appearance: none;
-	background: white;
-	background-color: white;
-	outline: 2px solid #333;
-	border: 3px solid white;
-	width: 16px;
-	height: 16px;
-	margin-bottom: 1em;
+	justify-content: center;
 }
 
 .checked:checked {
 	content: '✔';
-	/* background: aquamarine; */
+	background: aquamarine;
 	appearance: none;
 	outline: 2px solid #333;
 	border: 3px solid aquamarine;
 	width: 16px;
 	height: 16px;
-	background-color: aquamarine;
+	/* background-color: aquamarine; */
+
 	margin-bottom: 1em;
 }
 

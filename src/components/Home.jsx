@@ -2,13 +2,14 @@
 import styles from './home.module.css';
 import {useEffect, useState} from 'react';
 import Post from './Post';
-import {useNavigate, Outlet} from 'react-router-dom';
+import {useNavigate, Outlet, useLocation} from 'react-router-dom';
 // import Createpost from './createPost';
 
 const Home = ({userLoggedIn}) => {
 	const [posts, setPosts] = useState([]);
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const fetchPosts = async () => {
 		try {
@@ -23,7 +24,7 @@ const Home = ({userLoggedIn}) => {
 
 	useEffect(() => {
 		fetchPosts();
-	}, []);
+	}, [location]);
 
 	return (
 		<div className={styles.mainContainer}>

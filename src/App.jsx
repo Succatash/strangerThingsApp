@@ -7,6 +7,7 @@ import Login from './components/Login';
 import {useState} from 'react';
 import Home from './components/Home';
 import CreatePost from './components/createPost';
+import Profile from './components/Profile';
 
 function App() {
 	const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -44,6 +45,8 @@ function App() {
 						<Login setUserLoggedIn={setUserLoggedIn} setToken={setToken} />
 					}
 				></Route>
+
+				<Route path="/profile" element={<Profile />}></Route>
 			</Routes>
 		</>
 	);

@@ -51,14 +51,25 @@ const Navbar = ({userLoggedIn, setUserLoggedIn}) => {
 								navigate('/registerUser');
 							}}
 						>
-							Register User
+							Register
 						</button>
 					</div>
 				)}
 
 				{userLoggedIn && (
 					<div className={styles.buttonContainerLogOut}>
-						<p>Welcome New User</p>
+						<button
+							type="button"
+							value="Profile"
+							className={styles.profile}
+							onClick={() => {
+								setUserLoggedIn(false);
+								navigate('/profile');
+							}}
+						>
+							Profile
+						</button>
+
 						<button
 							type="button"
 							value="Log Out"
