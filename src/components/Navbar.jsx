@@ -60,18 +60,6 @@ const Navbar = ({userLoggedIn, setUserLoggedIn}) => {
 					<div className={styles.buttonContainerLogOut}>
 						<button
 							type="button"
-							value="Profile"
-							className={styles.profile}
-							onClick={() => {
-								setUserLoggedIn(false);
-								navigate('/profile');
-							}}
-						>
-							Profile
-						</button>
-
-						<button
-							type="button"
 							value="Log Out"
 							className={styles.logOut}
 							onClick={() => {

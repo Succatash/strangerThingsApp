@@ -1,14 +1,9 @@
 /* eslint-disable react/prop-types */
 import styles from './createPost.module.css';
-import useDidMountEffect from '../hooks/useComponentMount';
 import {useNavigate} from 'react-router-dom';
-import {useState} from 'react';
-// import {BsCheckLg} from 'react-icons/bs';
 
 const CreatePost = ({token}) => {
 	const navigate = useNavigate();
-
-	const [post, setPost] = useState({});
 
 	const makePost = async (post) => {
 		try {
@@ -22,6 +17,7 @@ const CreatePost = ({token}) => {
 					post: post,
 				}),
 			});
+
 			const result = await response.json();
 			if (result.success) {
 				navigate('/');
@@ -31,7 +27,9 @@ const CreatePost = ({token}) => {
 		}
 	};
 
-	useDidMountEffect(makePost(post));
+	// useEffect(() => {
+	// 	makePost(post);
+	// }, [post]);
 
 	return (
 		<div className={styles.createPostContainer}>
@@ -45,7 +43,7 @@ const CreatePost = ({token}) => {
 					id="form"
 					onSubmit={(e) => {
 						e.preventDefault();
-						setPost({
+						makePost({
 							title: e.target.title.value,
 							description: e.target.description.value,
 							price: e.target.price.value,

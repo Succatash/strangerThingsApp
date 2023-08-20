@@ -1,16 +1,14 @@
 /* eslint-disable react/prop-types */
 import {useState} from 'react';
-import useDidMountEffect from '../hooks/useComponentMount';
+
 import styles from './login.module.css';
 import {useNavigate} from 'react-router-dom';
+import {useEffect} from 'react';
 
-const Login = ({setToken, setUserLoggedIn}) => {
+const Login = ({setToken, setUserLoggedIn, setUsername}) => {
 	const navigate = useNavigate();
-
-	const [registeredUser, setRegisteredUser] = useState({});
-
+	const [user, setUser] = useState({});
 	const [visible, setVisible] = useState(false);
-
 	const [focusPlaceholderPassword, setFocusPlaceHolder] = useState('Password');
 	const [focusPlaceholderUsername, setFocusPlaceholderUsername] =
 		useState('Username');
@@ -34,8 +32,10 @@ const Login = ({setToken, setUserLoggedIn}) => {
 			);
 
 			const result = await response.json();
+
 			if (result.success) {
 				setUserLoggedIn(true);
+				setUsername(userObj.username);
 				setToken(result?.data?.token);
 				navigate('/');
 			}
@@ -46,9 +46,9 @@ const Login = ({setToken, setUserLoggedIn}) => {
 		}
 	};
 
-	useDidMountEffect(() => {
-		login(registeredUser);
-	}, registeredUser);
+	useEffect(() => {
+		login(user);
+	});
 
 	return (
 		<div className={styles.registerUserContainer}>
@@ -94,7 +94,7 @@ const Login = ({setToken, setUserLoggedIn}) => {
 						// const fd = new FormData(e.currentTarget);
 						//  setRegisteredUser([...fd]);
 
-						setRegisteredUser({
+						setUser({
 							username: e.target.registeredUserName.value,
 							password: e.target.registeredPassword.value,
 						});

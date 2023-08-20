@@ -7,11 +7,12 @@ import Login from './components/Login';
 import {useState} from 'react';
 import Home from './components/Home';
 import CreatePost from './components/createPost';
-import Profile from './components/Profile';
 
 function App() {
 	const [userLoggedIn, setUserLoggedIn] = useState(false);
 	const [token, setToken] = useState(null);
+	const [username, setUsername] = useState('');
+	//set up username state to past to posts
 
 	return (
 		<>
@@ -20,12 +21,19 @@ function App() {
 			<Routes>
 				<Route
 					path="/"
-					element={<Home token={token} userLoggedIn={userLoggedIn} />}
+					element={
+						<Home
+							token={token}
+							userLoggedIn={userLoggedIn}
+							username={username}
+						/>
+					}
 				>
 					<Route
 						path="/makepost"
 						element={<CreatePost token={token} />}
 					></Route>
+					{/* <Route path=":id/message" element={<Message />}></Route> */}
 				</Route>
 
 				<Route
@@ -38,15 +46,14 @@ function App() {
 
 				<Route
 					path="/login"
-					loader={() => {
-						console.log('test');
-					}}
 					element={
-						<Login setUserLoggedIn={setUserLoggedIn} setToken={setToken} />
+						<Login
+							setUserLoggedIn={setUserLoggedIn}
+							setToken={setToken}
+							setUsername={setUsername}
+						/>
 					}
 				></Route>
-
-				<Route path="/profile" element={<Profile />}></Route>
 			</Routes>
 		</>
 	);
