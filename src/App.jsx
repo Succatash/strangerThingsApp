@@ -6,7 +6,7 @@ import RegisterUser from './components/Register';
 import Login from './components/Login';
 import {useState} from 'react';
 import Home from './components/Home';
-import CreatePost from './components/createPost';
+import CreatePost from './components/CreatePost';
 import Message from './components/Messages';
 import DirectMessage from './components/DirectMessages';
 
