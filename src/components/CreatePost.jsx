@@ -8,16 +8,19 @@ const CreatePost = ({token}) => {
 
 	const makePost = async (post) => {
 		try {
-			const response = await fetch(`${import.meta.env.VITE_BASE_URL}/posts`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					post: post,
-				}),
-			});
+			const response = await fetch(
+				`${'https://strangers-things.herokuapp.com/api/2302-ACC-ET-WEB-PT-E'}/posts`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${token}`,
+					},
+					body: JSON.stringify({
+						post: post,
+					}),
+				}
+			);
 
 			const result = await response.json();
 			if (result.success) {

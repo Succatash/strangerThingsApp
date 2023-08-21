@@ -17,7 +17,7 @@ const RegisterUser = () => {
 	const handleSubmit = async (userObj) => {
 		try {
 			const response = await fetch(
-				`${import.meta.env.VITE_BASE_URL}/users/register`,
+				`${'https://strangers-things.herokuapp.com/api/2302-ACC-ET-WEB-PT-E'}/users/register`,
 				{
 					method: 'POST',
 					headers: {

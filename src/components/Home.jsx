@@ -12,7 +12,9 @@ const Home = ({userLoggedIn, username, token}) => {
 
 	const fetchPosts = async () => {
 		try {
-			const response = await fetch(`${import.meta.env.VITE_BASE_URL}/posts`);
+			const response = await fetch(
+				`${'https://strangers-things.herokuapp.com/api/2302-ACC-ET-WEB-PT-E'}/posts`
+			);
 			const result = await response.json();
 			console.log(result.data.posts);
 			setPosts(result.data.posts);

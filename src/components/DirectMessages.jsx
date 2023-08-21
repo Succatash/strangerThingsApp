@@ -13,7 +13,7 @@ const DirectMessage = () => {
 	const postMessage = async (content) => {
 		try {
 			const response = await fetch(
-				`${import.meta.env.VITE_BASE_URL}/posts/${
+				`${'https://strangers-things.herokuapp.com/api/2302-ACC-ET-WEB-PT-E'}/posts/${
 					location.state.postId
 				}/messages`,
 				{

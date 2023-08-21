@@ -15,7 +15,7 @@ const Login = ({setToken, setUserLoggedIn, setUsername}) => {
 	const login = async (userObj) => {
 		try {
 			const response = await fetch(
-				`${import.meta.env.VITE_BASE_URL}/users/login`,
+				`${'https://strangers-things.herokuapp.com/api/2302-ACC-ET-WEB-PT-E'}/users/login`,
 				{
 					method: 'POST',
 					headers: {
