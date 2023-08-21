@@ -83,6 +83,11 @@ input[type='submit'] {
 	padding-top: 5px;
 }
 
+.xicon {
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
 /* .checkmark {
 	position: relative;
 	top: 36px;

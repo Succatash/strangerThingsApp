@@ -1,29 +1,12 @@
 /* eslint-disable react/prop-types */
 import styles from './post.module.css';
 import useDeletePost from '../hooks/useDelete';
+import {useNavigate} from 'react-router-dom';
+import {BiMessageSquareDetail} from 'react-icons/bi';
 
 const Post = ({posts, userLoggedIn, username, token, setDeletedPost}) => {
 	const {handleDelete} = useDeletePost(token, posts._id, setDeletedPost);
-
-	// const deletePost = async (postId, token) => {
-	// 	try {
-	// 		const response = await fetch(
-	// 			`${import.meta.env.VITE_BASE_URL}/posts/${postId}`,
-	// 			{
-	// 				method: 'DELETE',
-	// 				headers: {
-	// 					'Content-Type': 'application/json',
-	// 					Authorization: `Bearer ${token}`,
-	// 				},
-	// 			}
-	// 		);
-	// 		const result = await response.json();
-	// 		console.log(result.success);
-	// 		setDeletedPost(result.success);
-	// 	} catch (err) {
-	// 		console.error(err);
-	// 	}
-	// };
+	const navigate = useNavigate();
 
 	return (
 		<section className={styles.postContainer}>
@@ -42,7 +25,23 @@ const Post = ({posts, userLoggedIn, username, token, setDeletedPost}) => {
 			{userLoggedIn ? (
 				username ? (
 					<div className={styles.buttonContainer}>
-						<button>Messages</button>
+						<button
+							type="button"
+							onClick={() => {
+								navigate(`/${posts._id}/messages`, {
+									state: {
+										token: token,
+										postId: posts._id,
+										authorName: posts.author.username,
+									},
+								});
+							}}
+						>
+							{' '}
+							<BiMessageSquareDetail />
+							Messages
+						</button>
+
 						<button
 							type="button"
 							className={styles.deleteButton}
@@ -53,7 +52,21 @@ const Post = ({posts, userLoggedIn, username, token, setDeletedPost}) => {
 					</div>
 				) : (
 					<div className={styles.buttonContainer}>
-						<button type="button">Direct Message</button>
+						<button
+							type="button"
+							onClick={() => {
+								navigate(`/${posts._id}/directmessage`, {
+									state: {
+										username: posts.author.username,
+										token: token,
+										postId: posts._id,
+									},
+								});
+							}}
+						>
+							<BiMessageSquareDetail />
+							Direct Message
+						</button>
 					</div>
 				)
 			) : null}

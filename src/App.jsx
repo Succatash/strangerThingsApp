@@ -7,6 +7,8 @@ import Login from './components/Login';
 import {useState} from 'react';
 import Home from './components/Home';
 import CreatePost from './components/createPost';
+import Message from './components/Messages';
+import DirectMessage from './components/DirectMessages';
 
 function App() {
 	const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -33,7 +35,10 @@ function App() {
 						path="/makepost"
 						element={<CreatePost token={token} />}
 					></Route>
-					{/* <Route path=":id/message" element={<Message />}></Route> */}
+					<Route path=":id/messages" element={<Message />}>
+						<Route path=":id/directmessage" element={<DirectMessage />}></Route>
+					</Route>
+					<Route path=":id/directmessage" element={<DirectMessage />}></Route>
 				</Route>
 
 				<Route

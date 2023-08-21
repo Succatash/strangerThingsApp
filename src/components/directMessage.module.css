@@ -10,8 +10,8 @@
 }
 
 .modalContainer {
-	width: 500px;
-	height: 500px;
+	width: 300px;
+	height: 350px;
 	border-radius: 12px;
 	background-color: white;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -20,4 +20,28 @@
 
 	margin-bottom: 60px;
 	color: black;
+}
+
+.icon {
+	padding: 2px;
+	margin: 2px;
+}
+
+.title {
+	margin-bottom: 20px;
+	align-self: center;
+}
+
+.messagebox {
+	width: 250px;
+	height: 155px;
+	text-align: center;
+	padding-top: 19px;
+	align-self: center;
+}
+
+.submitButton {
+	margin-top: 13px;
+	align-self: center;
+	padding: 5px;
 }

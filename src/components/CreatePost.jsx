@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from './createPost.module.css';
 import {useNavigate} from 'react-router-dom';
+import {IoCloseSharp} from 'react-icons/io5';
 
 const CreatePost = ({token}) => {
 	const navigate = useNavigate();
@@ -36,7 +37,12 @@ const CreatePost = ({token}) => {
 			{/* //modal */}
 			<div className={styles.modalContainer}>
 				{/* form inside */}
-
+				<IoCloseSharp
+					onClick={() => {
+						navigate('/');
+					}}
+					className={styles.xicon}
+				/>
 				<form
 					action=""
 					className={styles.form}

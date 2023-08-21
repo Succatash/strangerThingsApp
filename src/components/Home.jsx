@@ -71,7 +71,6 @@ const Home = ({userLoggedIn, username, token}) => {
 					}
 				})}
 			</div>
-			{/* <Outlet /> */}
 		</main>
 	);
 };
