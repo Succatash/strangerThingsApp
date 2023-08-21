@@ -2,7 +2,7 @@ const useDeletePost = (token, postId, func) => {
 	const handleDelete = async () => {
 		try {
 			const response = await fetch(
-				`${import.meta.env.VITE_BASE_URL}/posts/${postId}`,
+				`${'https://strangers-things.herokuapp.com/api/2302-ACC-ET-WEB-PT-E'}/posts/${postId}`,
 				{
 					method: 'DELETE',
 					headers: {

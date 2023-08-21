@@ -2,7 +2,6 @@ import styles from './message.module.css';
 import {useNavigate, useLocation} from 'react-router-dom';
 import {IoCloseSharp} from 'react-icons/io5';
 import {useState, useEffect} from 'react';
-import DirectMessage from './DirectMessages';
 
 export default function Message() {
 	let navigate = useNavigate();
