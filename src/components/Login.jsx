@@ -182,6 +182,7 @@ const Login = ({setToken, setUserLoggedIn, setUsername}) => {
 					type="submit"
 					value="Create Account"
 					className={styles.createAccountButton}
+					onClick={() => navigate('/registerUser')}
 				/>
 			</div>
 		</div>
